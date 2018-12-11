@@ -30,3 +30,13 @@
     transform: rotate(360deg);
   }
 }
+
+td.nav{
+  background-color:rgb(127, 221, 252);
+  color:black;
+}
+
+td.nav:hover{
+  background-color:gray;
+  color:white;
+}
