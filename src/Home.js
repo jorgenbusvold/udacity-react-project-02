@@ -6,9 +6,21 @@ import UnansweredQuestionsList from './UnansweredQuestionsList';
 
 class Home extends Component {
 
-    setValue = (variable, value) => {
-      variable = value;
-    }
+  state = {
+    viewUnAnsweredItems : true
+  }
+
+  showUnansweredQuestions = () => {
+    this.setState((currentState) => ({
+      viewUnAnsweredItems : true
+    })); 
+  }
+
+  hideUnansweredQuestions = () => {
+    this.setState((currentState) => ({
+      viewUnAnsweredItems : false
+    })); 
+  }
 
     render() {
 
@@ -24,43 +36,41 @@ class Home extends Component {
 
       var unansweredQuestions = getAllItemsExceptFromKeys(allItems,answerKeys);
 
-      var isUnansweredEnabled = this.props.isUnansweredEnabled;
-
-      console.log('isUnansweredEnabled :', isUnansweredEnabled);
+      var {viewUnansweredQuestions,hideUnansweredQuestions} = this.props;
 
       return (
         <div className="Home">
           <div align="CENTER">
 
             <h1>Are you ready to play "Would you rather"?</h1>
-            
-            <table >
-              <thead>
-                <th>
-                  <button onClick={this.setValue(isUnansweredEnabled,false)}>View Answered</button>
-                </th>
-                <th>
-                  <button onClick={this.setValue(isUnansweredEnabled,true)}>View Unanswered</button>
-                </th>
-              </thead>
-              <tbody>
-                <tr colspan="2">
-                  {(isUnansweredEnabled) ? 
-                  (
-                    <UnansweredQuestionsList 
-                      user={user}
-                      uncompletedQuetions = {unansweredQuestions}                
-                    />
-                  ):
-                  (
-                    <AnsweredQuestionsList 
-                      user={user}
-                      completedQuestions = {answeredQuestions}
-                    />
-                  )}
-                  </tr>
-              </tbody>
-            </table>
+            <div>
+              <button 
+                onClick={() => this.hideUnansweredQuestions()}
+              >
+              Hide unanswered
+              </button>
+
+              <button 
+                onClick={() => this.showUnansweredQuestions()}
+              >
+              Show unanswered
+              </button>
+            </div>
+
+            {this.state.viewUnAnsweredItems? 
+            (
+              <UnansweredQuestionsList 
+                user={user}
+                uncompletedQuetions = {unansweredQuestions}                
+              />
+            ):
+            (
+              <AnsweredQuestionsList 
+                user={user}
+                completedQuestions = {answeredQuestions}
+              />
+            )}
+
 
           </div>
         </div>

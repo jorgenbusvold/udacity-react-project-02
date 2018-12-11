@@ -56,7 +56,6 @@ class AnsweredQuestionsList extends Component {
         return (
             <div className="Container">            
                 <div className="AnsweredQuestionsList" align="CENTER">
-                    <h1>AnsweredQuestionsList</h1>
                     <td valign="TOP">
                         <div className="completedPolls">
                             <table>
