@@ -6,6 +6,7 @@ import UnansweredPoll from './UnansweredPoll';
 import AddPoll from './AddPoll';
 import NavigationHeader from './NavigationHeader';
 import LeaderBoard from './LeaderBoard';
+import {Route} from 'react-router-dom';
 
 class App extends Component {
   
@@ -157,21 +158,49 @@ class App extends Component {
                 user = {this.state.users}
                 onUserLoggedOut = {this.onUserLoggedOut}
               />
-              <Home 
-                users={this.state.users}
-                questions={this.state.questions}
-                onUserLoggedOut={this.onUserLoggedOut}
+              <Route
+                exact path="/Questions" render={
+                  () => (
+                    <Home 
+                      users={this.state.users}
+                      questions={this.state.questions}
+                      onUserLoggedOut={this.onUserLoggedOut}
+                    />
+                  )
+                }
               />
 
-              {/* <UnansweredPoll 
-                question={this.state.questions["8xf0y6ziyjabvozdd253nd"]}
-              /> */}
+              <Route
+                exact path="/Questions/Unanswered" render={
+                  () => (
+                    <UnansweredPoll 
+                      question={this.state.questions["8xf0y6ziyjabvozdd253nd"]}
+                    />
+                  )
+                }
+              />  
 
-            {/* <AddPoll
-              users={this.state.users}
-              questions={this.state.questions}
-              onUserLoggedOut={this.onUserLoggedOut}
-            /> */}
+              <Route
+                exact path="/Questions/Add" render={
+                  () => (
+                  <AddPoll
+                    users={this.state.users}
+                    questions={this.state.questions}
+                    onUserLoggedOut={this.onUserLoggedOut}
+                  /> 
+                  )
+                }
+              />  
+
+              <Route
+                exact path="/Leaderboard" render={
+                  () => (
+                  <LeaderBoard
+                    
+                  /> 
+                  )
+                }
+              />              
 
             </div>
           ) :(

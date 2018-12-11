@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Link} from 'react-router-dom';
 
 class NavigationHeader extends Component {
 
@@ -19,18 +20,34 @@ class NavigationHeader extends Component {
                 <table align="CENTER">
                     <tbody>
                         <tr>
-
                             <td className="nav">
-                                <a href="~/Home">Home</a>     
+                                <Link 
+                                    to="/Questions">
+                                    Questions
+                                </Link>
                             </td>
 
                             <td className="nav">
-                                <a href="~/Questions/Add">Add question</a>     
+                                <Link 
+                                    to="/Questions/Unanswered">
+                                    Unanswered
+                                </Link>
                             </td>
 
                             <td className="nav">
-                                <a href="~/Leaderboard">Leaderboard</a>     
+                                <Link 
+                                    to="/Questions/Add">
+                                    Add Question
+                                </Link>
                             </td>
+
+                            <td className="nav">
+                                <Link 
+                                    to="/Leaderboard">
+                                    Leaderboard
+                                </Link>
+                            </td>
+
 
                         </tr>
                     </tbody>
