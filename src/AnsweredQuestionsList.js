@@ -4,8 +4,10 @@ import './App.css';
 class AnsweredQuestionsList extends Component {
 
 
-    showMessage = () => {
-        alert("Boooh");
+    showResult = (user, question) =>{
+        console.log('ENTER showResult: user: ', user)
+  
+        console.log('question: ', question);
       }
 
     render(){
@@ -13,63 +15,46 @@ class AnsweredQuestionsList extends Component {
         console.log('Enter AnsweredQuestionsList');
 
         var user = this.props.user;
-        
-        console.log('User: ', user);
 
         var completedQuestions = this.props.completedQuestions;
 
-        console.log('completedQuestions: ', completedQuestions);
-
         var completedListItems = completedQuestions.map(item => (
             <tr key={item.id}>
-              <table>
-                <tbody>
-                  
-                    <tr>
-    
-                      <td align="left" colspan="2" bgcolor="gainsboro">
+                <td>
+                    <div align="left" colSpan="3" bgcolor="gainsboro">
                         {item.author} asks:
-                      </td>
-    
-                    </tr>
-    
-                    <tr align="right">
-    
-                      <td align="left">AVATAR_IMG</td>
-    
-                      <td align="left">
-                          <b>Would you rather </b>
-                          <br/>
-                          ...{item.optionOne.text}
-                          <br />
-                          <button onClick={this.showMessage}>View result</button>
-                      </td>  
-    
-                    </tr>
-    
-                </tbody>
-              </table>
-            </tr>
+                    </div>
+                    <div>
+                        AVATAR_IMG
+                    </div>
+                </td>
+                
+
+                <td align="left">
+                    <b>Would you rather </b>
+                    <br/>
+                    ...{item.optionOne.text}
+                    <br />
+                    <button onClick={() => this.showResult(user,item)}>View result</button>
+                </td>  
+             </tr>
           ));
 
 
         return (
-            <div className="Container">            
+        
                 <div className="AnsweredQuestionsList" align="CENTER">
-                    <td valign="TOP">
-                        <div className="completedPolls">
-                            <table>
-                                <thead>
-                                    <th bgcolor="palegreen">Completed questions</th>
-                                </thead>
-                            <tbody>
-                                {completedListItems}
-                            </tbody>
-                            </table>
-                        </div>
-                    </td>
-                </div>
-            </div>            
+                    <table>
+                        <thead>
+                            <tr>
+                                <th bgcolor="palegreen" colSpan="2">Completed questions</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            {completedListItems}
+                        </tbody>
+                    </table>
+                </div>            
         );
     }
 }

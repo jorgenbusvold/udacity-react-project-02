@@ -129,20 +129,9 @@ class App extends Component {
     },
     isUserLoggedIn : false,
     loggedInUser : null,
-    viewUnAnsweredItems : true
   };
 
-  viewUnansweredQuestions = () => {
-    this.setState((currentState) => ({
-      viewUnAnsweredItems : true
-    })); 
-  }
 
-  hideUnansweredQuestions = () => {
-    this.setState((currentState) => ({
-      viewUnAnsweredItems : false
-    })); 
-  }
 
   onUserLoggedIn = (user) => {
     console.log("ENTER: onUserLoggedIn")
@@ -162,8 +151,13 @@ class App extends Component {
     }))    
   }
 
-  onPollCreated = (poll) => {
-    console.log('You just created a new poll', poll)
+  onPollCreated = (user, poll) => {
+    console.log('New poll created by user: ', user)
+    console.log('New poll created: ', poll)
+
+    // this.setState((currentState) => ({
+    //     questions: currentState.questions.concat(poll)
+    //   }));
   }
 
   render() {
@@ -183,8 +177,6 @@ class App extends Component {
                       user={this.state.loggedInUser}
                       questions={this.state.questions}
                       onUserLoggedOut={this.onUserLoggedOut}
-                      viewUnansweredQuestions = {this.viewUnansweredQuestions}
-                      hideUnansweredQuestions = {this.hideUnansweredQuestions}
                     />
                   )
                 }

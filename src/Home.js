@@ -16,7 +16,7 @@ class Home extends Component {
     })); 
   }
 
-  hideUnansweredQuestions = () => {
+  showCompletedQuestions = () => {
     this.setState((currentState) => ({
       viewUnAnsweredItems : false
     })); 
@@ -30,13 +30,7 @@ class Home extends Component {
 
       var allItems = getObjectArray(questions);
 
-      var answerKeys = Object.keys(user.answers);
-
-      var answeredQuestions = getAllItemsWhereKeysExist(allItems,answerKeys);
-
-      var unansweredQuestions = getAllItemsExceptFromKeys(allItems,answerKeys);
-
-      var {viewUnansweredQuestions,hideUnansweredQuestions} = this.props;
+      var answeredQuestionsKeys = Object.keys(user.answers);
 
       return (
         <div className="Home">
@@ -44,30 +38,28 @@ class Home extends Component {
 
             <h1>Are you ready to play "Would you rather"?</h1>
             <div>
-              <button 
-                onClick={() => this.hideUnansweredQuestions()}
-              >
-              Hide unanswered
+              <button onClick={() => this.showUnansweredQuestions()}>
+                Show unanswered
               </button>
 
-              <button 
-                onClick={() => this.showUnansweredQuestions()}
-              >
-              Show unanswered
+              <button onClick={() => this.showCompletedQuestions()}>
+                Show Completed
               </button>
+
+              
             </div>
 
             {this.state.viewUnAnsweredItems? 
             (
               <UnansweredQuestionsList 
                 user={user}
-                uncompletedQuetions = {unansweredQuestions}                
+                uncompletedQuetions = {getAllItemsExceptFromKeys(allItems,answeredQuestionsKeys)}                
               />
             ):
             (
               <AnsweredQuestionsList 
                 user={user}
-                completedQuestions = {answeredQuestions}
+                completedQuestions = {getAllItemsWhereKeysExist(allItems,answeredQuestionsKeys)}
               />
             )}
 

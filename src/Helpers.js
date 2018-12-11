@@ -1,30 +1,29 @@
 export function getObjectArray(objectEntries) {
     var entries = []; 
 
-    var i = 0;
-
     var keys = Object.keys(objectEntries);
 
-    for(var key in keys)
+    for(var index in keys)
     {
-        console.log(key);
-        var entry = objectEntries[keys[i]];
+        var entry = objectEntries[keys[index]];
         entries.push(entry);
-        i++;
     }
 
     return entries;
 }
 
-export function getAllItemsExceptFromKeys(allItems, exceptFromKeys) {
+export function getAllItemsExceptFromKeys(allItems, excludeKeys) {
+    
+    console.log('ENTER getAllItemsExceptFromKeys: ',allItems)
+    console.log('excludeKeys: ',excludeKeys)
 
     var items = []; 
 
     for(var item in allItems)
     {
-      if(!exceptFromKeys.includes(item.id))
+      if(!excludeKeys.includes(allItems[item].id))
       {
-        items.push(item);
+        items.push(allItems[item]);
       }
     }
 
@@ -32,6 +31,9 @@ export function getAllItemsExceptFromKeys(allItems, exceptFromKeys) {
   }
 
   export function getAllItemsWhereKeysExist(allItems,existingKeys){
+
+    console.log('ENTER getAllItemsWhereKeysExist: ',allItems)
+    console.log('existingKeys: ',existingKeys)
 
     var items = []; 
 
