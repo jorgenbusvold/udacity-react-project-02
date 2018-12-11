@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {getObjectArray} from './Helpers';
 
 class Login extends Component {
 
@@ -10,29 +11,11 @@ class Login extends Component {
       }
     }
 
-    getObjectArray = (objectEntries) => {
-      var entries = []; 
-
-      var i = 0;
-
-      var keys = Object.keys(objectEntries);
-
-      for(var key in keys)
-      {
-        var entry = objectEntries[keys[i]];
-        console.log(entry);
-        entries.push(entry);
-        i++;
-      }
-
-      return entries;
-    }
-
     render() {
   
       const {users} = this.props;
   
-      var options = this.getObjectArray(users).map(u => (
+      var options = getObjectArray(users).map(u => (
         <option key={u.id} value={u.id}>{u.name}</option>
       ));
       

@@ -7,6 +7,7 @@ import AddPoll from './AddPoll';
 import NavigationHeader from './NavigationHeader';
 import LeaderBoard from './LeaderBoard';
 import {Route} from 'react-router-dom';
+import CompletedPoll from './CompletedPoll';
 
 class App extends Component {
   
@@ -126,7 +127,8 @@ class App extends Component {
         }
       }
     },
-    isUserLoggedIn : false
+    isUserLoggedIn : false,
+    loggedInUser : null
   };
 
   
@@ -136,7 +138,8 @@ class App extends Component {
     console.info(user);
 
     this.setState((currentState) => ({
-      users : currentState.users[user.id], 
+      //users : currentState.users[user.id], 
+      loggedInUser : currentState.users[user.id], 
       isUserLoggedIn : true
     })); 
   }
@@ -159,25 +162,27 @@ class App extends Component {
         { (this.state.isUserLoggedIn) ? (
             <div>
               <NavigationHeader 
-                user = {this.state.users}
+                user = {this.state.loggedInUser}
                 onUserLoggedOut = {this.onUserLoggedOut}
               />
               <Route
-                exact path="/Questions" render={
+                exact path="/questions" render={
                   () => (
                     <Home 
-                      users={this.state.users}
+                      user={this.state.loggedInUser}
                       questions={this.state.questions}
                       onUserLoggedOut={this.onUserLoggedOut}
+                      isUnansweredEnabled = {true}
                     />
                   )
                 }
               />
 
               <Route
-                exact path="/Questions/Unanswered" render={
+                exact path="/questions/unanswered" render={
                   () => (
                     <UnansweredPoll 
+                      user = {this.state.loggedInUser} 
                       question={this.state.questions["8xf0y6ziyjabvozdd253nd"]}
                     />
                   )
@@ -185,10 +190,21 @@ class App extends Component {
               />  
 
               <Route
-                exact path="/Questions/Add" render={
+                exact path="/questions/completed" render={
+                  () => (
+                    <CompletedPoll
+                      user = {this.state.loggedInUser} 
+                      question={this.state.questions["8xf0y6ziyjabvozdd253nd"]}
+                    />
+                  )
+                }
+              />  
+
+              <Route
+                exact path="/questions/add" render={
                   ({history}) => (
                   <AddPoll
-                    user = {this.state.users}
+                    user = {this.state.loggedInUser}
                     onPollCreated = {(poll) => {
                       this.onPollCreated(poll);
                       history.push('/Questions')
@@ -200,10 +216,10 @@ class App extends Component {
               />  
 
               <Route
-                exact path="/Leaderboard" render={
+                exact path="/leaderboard" render={
                   () => (
                   <LeaderBoard
-                    
+                    users = {this.state.users}
                   /> 
                   )
                 }

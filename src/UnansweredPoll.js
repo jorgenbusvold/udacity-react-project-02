@@ -6,6 +6,8 @@ class UnansweredPoll extends Component {
     
     render(){
 
+        console.log('Enter Unanswered POLL');
+
         var question = this.props.question;
 
         console.log(question);
