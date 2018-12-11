@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
+import serializeForm from 'form-serialize';
 
 class AddPoll extends Component {
 
+    handleSubmit = (e) =>{
+        e.preventDefault();
+
+        const values = serializeForm(e.target, {hash:true});
+
+        console.log('values: ',values);
+        // TODO implement asction: SAVE_POLL
+
+        this.props.onPollCreated(values);
+
+        // NAVIGATE TO QUESTIONS...?
+    }
+
     render(){
+        
+        var {user} = this.props;
+
+        console.log('User: ',user);
+
         return (
             <div className="Container">            
                 <div className="AddPoll" align="CENTER">
@@ -16,7 +35,11 @@ class AddPoll extends Component {
 
                         <b>Would you rather...</b>
 
-                        <form className="add-new-poll">
+                        <form 
+                            onSubmit={this.handleSubmit} 
+                            className="add-new-poll">
+
+                            <input type="hidden" name="userId" value={user.id} />
 
                             <input type="text" name="optionOne" placeholder="option one"/>
                             

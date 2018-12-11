@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 
 class NavigationHeader extends Component {
 
+
+
     render(){
 
         var {user} = this.props;

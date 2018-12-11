@@ -148,6 +148,10 @@ class App extends Component {
     }))    
   }
 
+  onPollCreated = (poll) => {
+    console.log('You just created a new poll', poll)
+  }
+
   render() {
 
     return (
@@ -182,11 +186,14 @@ class App extends Component {
 
               <Route
                 exact path="/Questions/Add" render={
-                  () => (
+                  ({history}) => (
                   <AddPoll
-                    users={this.state.users}
-                    questions={this.state.questions}
-                    onUserLoggedOut={this.onUserLoggedOut}
+                    user = {this.state.users}
+                    onPollCreated = {(poll) => {
+                      this.onPollCreated(poll);
+                      history.push('/Questions')
+                      }
+                    }
                   /> 
                   )
                 }
