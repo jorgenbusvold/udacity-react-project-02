@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './Login';
 import Home from './Home';
-import UnansweredPoll from './UnansweredPoll';
 import AddPoll from './AddPoll';
 import NavigationHeader from './NavigationHeader';
 import LeaderBoard from './LeaderBoard';
-import {Route} from 'react-router-dom';
+import {Route, matchPath} from 'react-router-dom';
+import UnansweredPoll from './UnansweredPoll';
 import CompletedPoll from './CompletedPoll';
+import QuestionHandler from './QuestionHandler';
 
 class App extends Component {
   
@@ -160,18 +161,34 @@ class App extends Component {
     //   }));
   }
 
+
+
+  isQuestionCompletedByUser = (question, user) => {
+
+    console.log('Question: ', question)
+    console.log('User: ', user)
+    console.log('will return  TRUE')
+    
+    return true;
+  }
+
   render() {
+    
+
 
     return (
       <div className="app">
         { (this.state.isUserLoggedIn) ? (
             <div>
+
               <NavigationHeader 
                 user = {this.state.loggedInUser}
                 onUserLoggedOut = {this.onUserLoggedOut}
               />
+
               <Route
-                exact path="/questions" render={
+                exact path="/" 
+                render={
                   () => (
                     <Home 
                       user={this.state.loggedInUser}
@@ -182,30 +199,21 @@ class App extends Component {
                 }
               />
 
-              <Route
-                exact path="/questions/unanswered" render={
-                  () => (
-                    <UnansweredPoll 
-                      user = {this.state.loggedInUser} 
-                      question={this.state.questions["8xf0y6ziyjabvozdd253nd"]}
+
+            <Route
+                 path="/questions/:question_id" 
+                 render={
+                   () => 
+                    <QuestionHandler
+                      user = {this.state.loggedInUser}
+                      questions = {this.state.questions}
                     />
-                  )
-                }
+                  }
               />  
 
               <Route
-                exact path="/questions/completed" render={
-                  () => (
-                    <CompletedPoll
-                      user = {this.state.loggedInUser} 
-                      question={this.state.questions["8xf0y6ziyjabvozdd253nd"]}
-                    />
-                  )
-                }
-              />  
-
-              <Route
-                exact path="/questions/add" render={
+                exact path="/questions/add" 
+                render={
                   ({history}) => (
                   <AddPoll
                     user = {this.state.loggedInUser}
@@ -220,7 +228,8 @@ class App extends Component {
               />  
 
               <Route
-                exact path="/leaderboard" render={
+                exact path="/leaderboard" 
+                render={
                   () => (
                   <LeaderBoard
                     users = {this.state.users}
@@ -230,7 +239,8 @@ class App extends Component {
               />              
 
             </div>
-          ) :(
+
+          ) : (
             <Login 
               users = {this.state.users}
               onUserLoggedIn={this.onUserLoggedIn}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {getAllItemsWhereKeysExist} from './Helpers';
 import './App.css';
 
 class AnsweredQuestionsList extends Component {
@@ -16,7 +17,9 @@ class AnsweredQuestionsList extends Component {
 
         var user = this.props.user;
 
-        var completedQuestions = this.props.completedQuestions;
+        var answeredQuestionsKeys = Object.keys(user.answers);
+
+        var completedQuestions = getAllItemsWhereKeysExist(this.props.allQuestionItems,answeredQuestionsKeys)
 
         var completedListItems = completedQuestions.map(item => (
             <tr key={item.id}>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {getAllItemsExceptFromKeys} from './Helpers';
 import './App.css';
 
 class UnansweredQuestionsList extends Component {
@@ -15,7 +16,9 @@ class UnansweredQuestionsList extends Component {
 
         var user = this.props.user;
 
-        var uncompletedQuetions = this.props.uncompletedQuetions;
+        var answeredQuestionsKeys = Object.keys(user.answers);
+        
+        var uncompletedQuetions = getAllItemsExceptFromKeys(this.props.allQuestionItems,answeredQuestionsKeys);
         
         var availableItems = uncompletedQuetions.map(item => (
             <tr key={item.id} className="incomplete-question-item">
@@ -40,16 +43,16 @@ class UnansweredQuestionsList extends Component {
 
         return (
             <div>
-                  <div className="unansweredPolls" >
+                  <div className="unansweredPolls"  align="CENTER">
                     <table>
-                      <thead>
-                        <tr>
-                          <th bgcolor="lightcoral" colSpan="2">Unanswered questions</th>
-                        </tr> 
-                      </thead>
-                      <tbody>
-                        {availableItems}
-                      </tbody>
+                        <thead>
+                          <tr>
+                            <th bgcolor="lightcoral" colSpan="2">Unanswered questions</th>
+                          </tr> 
+                        </thead>
+                        <tbody>
+                          {availableItems}
+                        </tbody>
                     </table>
                   </div>
             </div>

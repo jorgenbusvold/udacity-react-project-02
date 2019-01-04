@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {getObjectArray, getAllItemsExceptFromKeys, getAllItemsWhereKeysExist} from './Helpers';
+import {getObjectArray} from './Helpers';
 import AnsweredQuestionsList from './AnsweredQuestionsList';
 import UnansweredQuestionsList from './UnansweredQuestionsList';  
 
@@ -28,9 +28,8 @@ class Home extends Component {
 
       var questions = this.props.questions;
 
-      var allItems = getObjectArray(questions);
+      var allQuestionItems = getObjectArray(questions);
 
-      var answeredQuestionsKeys = Object.keys(user.answers);
 
       return (
         <div className="Home">
@@ -53,13 +52,13 @@ class Home extends Component {
             (
               <UnansweredQuestionsList 
                 user={user}
-                uncompletedQuetions = {getAllItemsExceptFromKeys(allItems,answeredQuestionsKeys)}                
+                allQuestionItems = {allQuestionItems}
               />
             ):
             (
               <AnsweredQuestionsList 
                 user={user}
-                completedQuestions = {getAllItemsWhereKeysExist(allItems,answeredQuestionsKeys)}
+                allQuestionItems = {allQuestionItems}
               />
             )}
 

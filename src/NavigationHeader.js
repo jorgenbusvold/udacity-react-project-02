@@ -25,11 +25,12 @@ class NavigationHeader extends Component {
 
                             <td className="nav">
                                 <Link 
-                                    to="/questions">
+                                    to="/">
                                     Home
                                 </Link>
                             </td>
-
+                            
+                            {/* 
                             <td className="nav">
                                 <Link 
                                     to="/questions/unanswered">
@@ -42,7 +43,7 @@ class NavigationHeader extends Component {
                                     to="/questions/completed">
                                     Completed
                                 </Link>
-                            </td>
+                            </td> */}
 
                             <td className="nav">
                                 <Link 
