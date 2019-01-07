@@ -13,8 +13,6 @@ class AddPoll extends Component {
         // TODO implement asction: SAVE_POLL
 
         this.props.onPollCreated(values);
-
-        // NAVIGATE TO QUESTIONS...?
     }
 
     render(){

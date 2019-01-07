@@ -30,6 +30,7 @@ class Home extends Component {
 
       var allQuestionItems = getObjectArray(questions);
 
+      var history = this.props.history;
 
       return (
         <div className="Home">
@@ -53,12 +54,14 @@ class Home extends Component {
               <UnansweredQuestionsList 
                 user={user}
                 allQuestionItems = {allQuestionItems}
+                history = {history}
               />
             ):
             (
               <AnsweredQuestionsList 
                 user={user}
                 allQuestionItems = {allQuestionItems}
+                history = {history}
               />
             )}
 

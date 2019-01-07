@@ -9,7 +9,14 @@ class AnsweredQuestionsList extends Component {
         console.log('ENTER showResult: user: ', user)
   
         console.log('question: ', question);
-      }
+
+        var url = `/questions/${question.id}`;
+  
+        console.log('redirect to url: ', url);
+  
+        this.props.history.push(url);
+    }
+
 
     render(){
         
@@ -38,7 +45,10 @@ class AnsweredQuestionsList extends Component {
                     <br/>
                     ...{item.optionOne.text}
                     <br />
-                    <button onClick={() => this.showResult(user,item)}>View result</button>
+                    <button onClick={() => 
+                        this.showResult(user,item)}>
+                        View result
+                    </button>
                 </td>  
              </tr>
           ));
