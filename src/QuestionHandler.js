@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import UnansweredPoll from './UnansweredPoll';
 import CompletedPoll from './CompletedPoll';
 import {matchPath} from 'react-router-dom';
-import {getObjectArray} from './Helpers';
 
 class QuestionHandler extends Component {
 
@@ -54,7 +53,9 @@ class QuestionHandler extends Component {
                 />)
             : 
             (<UnansweredPoll 
+                user = {user}
                 question = {this.props.questions[question.question_id]}
+                onAnswerSubmitted = {this.props.onAnswerSubmitted}
                 />
             )
         );

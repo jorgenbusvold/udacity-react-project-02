@@ -159,7 +159,10 @@ class App extends Component {
     //   }));
   }
 
-
+  onAnswerSubmitted = (user, question) => {
+    console.log("Answer submitted by user: ", user);
+    console.log("Answer submitted for question: ", question);
+  }
 
   isQuestionCompletedByUser = (question, user) => {
 
@@ -185,45 +188,54 @@ class App extends Component {
               />
 
               <Route
-                exact path="/" 
-                render={
-                  () => (
-                    <Home 
-                      user={this.state.loggedInUser}
-                      questions={this.state.questions}
-                      onUserLoggedOut={this.onUserLoggedOut}
-                    />
-                  )
-                }
-              />
-
-
-            <Route
-                 path="/questions/:question_id" 
-                 render={
-                   () => 
-                    <QuestionHandler
-                      user = {this.state.loggedInUser}
-                      questions = {this.state.questions}
-                    />
-                  }
-              />  
-
-              <Route
-                exact path="/questions/add" 
+                exact path="/add" 
                 render={
                   ({history}) => (
                   <AddPoll
                     user = {this.state.loggedInUser}
                     onPollCreated = {(poll) => {
                       this.onPollCreated(poll);
-                      history.push('/Questions')
+                      history.push('/')
                       }
                     }
                   /> 
                   )
                 }
               />  
+
+            <Route
+                exact path="/" 
+                render={
+                  ({history}) => (
+                    <Home 
+                      user={this.state.loggedInUser}
+                      questions={this.state.questions}
+                      onUserLoggedOut={this.onUserLoggedOut}
+                      history = {history}
+                    />
+                  )
+                }
+              />
+
+            <Route
+                 path="/questions/:question_id" 
+                 render={
+                   ({history}) => 
+                    <QuestionHandler
+                      user = {this.state.loggedInUser}
+                      questions = {this.state.questions}
+                      history = {history}
+                      onAnswerSubmitted = {(user,question) => {
+                          this.onAnswerSubmitted(user,question)
+                          history.push('/');
+                          }
+                      }
+                    />
+                  }
+              /> 
+
+
+               
 
               <Route
                 exact path="/leaderboard" 

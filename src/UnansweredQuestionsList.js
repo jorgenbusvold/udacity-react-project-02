@@ -4,10 +4,18 @@ import './App.css';
 
 class UnansweredQuestionsList extends Component {
 
+
+
     showPoll = (user, question) =>{
       console.log('ENTER showPoll: user: ', user);
 
       console.log('question: ', question);
+      
+      var url = `/questions/${question.id}`;
+
+      console.log('redirect to url: ', url);
+
+      this.props.history.push(url);
     }
 
     render() {
@@ -35,7 +43,11 @@ class UnansweredQuestionsList extends Component {
                     <br/>
                     ...{item.optionOne.text}
                     <br />
-                    <button onClick={() => this.showPoll(user, item)}>View POLL</button>  
+                    <button 
+                      onClick={() => 
+                      this.showPoll(user, item)}>
+                      >
+                      View POLL</button>  
                 </div> 
                 </td>
              </tr>
