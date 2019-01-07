@@ -5,9 +5,7 @@ import Home from './Home';
 import AddPoll from './AddPoll';
 import NavigationHeader from './NavigationHeader';
 import LeaderBoard from './LeaderBoard';
-import {Route, matchPath} from 'react-router-dom';
-import UnansweredPoll from './UnansweredPoll';
-import CompletedPoll from './CompletedPoll';
+import {Route} from 'react-router-dom';
 import QuestionHandler from './QuestionHandler';
 
 class App extends Component {
