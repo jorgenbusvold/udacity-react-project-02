@@ -16,7 +16,10 @@ class Login extends Component {
       const {users} = this.props;
   
       var options = getObjectArray(users).map(u => (
-        <option key={u.id} value={u.id}>{u.name}</option>
+        <option 
+            key={u.id} 
+            value={u.id}>{u.name}
+        </option>
       ));
       
 

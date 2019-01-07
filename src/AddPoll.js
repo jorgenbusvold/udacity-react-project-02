@@ -19,7 +19,7 @@ class AddPoll extends Component {
 
     render(){
         
-        var {user} = this.props;
+        var user = this.props.user;
 
         console.log('User: ',user);
 

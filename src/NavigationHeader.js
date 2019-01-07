@@ -47,7 +47,7 @@ class NavigationHeader extends Component {
 
                             <td className="nav">
                                 <Link 
-                                    to="/questions/add">
+                                    to="/add">
                                     New Question
                                 </Link>
                             </td>
