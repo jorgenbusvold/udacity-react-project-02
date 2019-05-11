@@ -1,0 +1,48 @@
+Would you rather Entities and Commands/Events:
+
+-----------------------------------
+Redux - Store - Actions - Reducers 
+-----------------------------------
+
+Entity		| UsedByView	| Action					| Event								| Props
+
+Users 		  					LogInUser					UserLoggedIn						- TotalNumberOfUsers
+								ListUsers					UsersListed							- User.Id
+																								- User.Avatar
+																								- User.Name
+																				
+
+AuthedUser						LogOutUser					UserLoggedOut						- User.Id
+																								- User.Name
+																								- User.Avatar	
+																								- NumberOfAddedPolls
+																								- NumberOfAnsweredPolls			
+				
+Polls							AddUserPoll					UserAddedPoll						- Poll.TotalNumberOfVotes
+								AddUserAnswer				UserAddedAnswer						- Poll.CreatedByUser (user_id)
+								ListAllPolls				AllPollsListed
+								ListAnsweredUserPolls		AnsweredUserPollsListed				- Poll.IsAnsweredByLoggedInUser
+								GetPollDetails				-
+								ListUnAnsweredUserPolls		UnAnsweredUserPollsListed			- Poll.Options	
+																										> Option
+																											* one : 
+																												- IsVotedOnByLoggedInUser
+																												- numberOfVotes (number and percentage)
+																												- option.text.value
+																											
+																											* two : 
+																												- IsVotedOnByLoggedInUser
+																												- numberOfVotes (number and percentage)
+																												- option.text.value
+								
+
+								HanleInitialState		-> Lesson 7, Concept. 6 - Actions
+Articles:
+---------
+x) Redux vs. Flux : https://medium.com/netscape/component-state-vs-redux-store-1eb0c929277
+x) Redux : Separation of concerns: https://medium.freecodecamp.org/react-redux-architecture-part-1-separation-of-concerns-812da3b08b46
+1) Why Redux ?? https://blog.pusher.com/the-what-and-why-of-redux/
+	#1. Single Source of Truth
+	#2. State is Read-Only
+	#3. Changes are made with Pure Functions
+2) https://css-tricks.com/learning-react-redux/

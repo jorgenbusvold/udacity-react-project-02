@@ -7,9 +7,13 @@ import NavigationHeader from './NavigationHeader';
 import LeaderBoard from './LeaderBoard';
 import {Route} from 'react-router-dom';
 import QuestionHandler from './QuestionHandler';
+import {connect} from 'react-redux';
+import {handleInitialData} from './redux/actions/Shared'
 
 class App extends Component {
   
+
+
   state = {
     users : {
       sarahedo: {
@@ -130,6 +134,9 @@ class App extends Component {
     loggedInUser : null,
   };
 
+  componentDidMount(){
+    this.props.dispatch(handleInitialData())
+  }
 
 
   onUserLoggedIn = (user) => {
@@ -262,4 +269,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);

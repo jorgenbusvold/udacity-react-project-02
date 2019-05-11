@@ -47,7 +47,8 @@ class UnansweredQuestionsList extends Component {
                       onClick={() => 
                       this.showPoll(user, item)}>
                       >
-                      View POLL</button>  
+                      View POLL
+                      </button>  
                 </div> 
                 </td>
              </tr>
