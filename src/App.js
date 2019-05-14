@@ -135,6 +135,7 @@ class App extends Component {
   };
 
   componentDidMount(){
+    console.log('Enter : componentDidMount')
     this.props.dispatch(handleInitialData())
   }
 

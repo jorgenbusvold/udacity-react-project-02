@@ -9,7 +9,10 @@ import {Provider as ReduxProvider} from 'react-redux';
 import reducer from './redux/reducers';
 import middleware from './middelware'
 
-const store = createStore(reducer,middleware);
+const store = createStore(
+    reducer
+    ,middleware
+    );
 
 console.log(store.getState())
 
