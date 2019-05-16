@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UnansweredPoll from './UnansweredPoll';
 import CompletedPoll from './CompletedPoll';
 import {matchPath} from 'react-router-dom';
+import {connect}  from 'react-redux';
 
 class QuestionHandler extends Component {
 
@@ -23,15 +24,7 @@ class QuestionHandler extends Component {
 
     render() {
         
-        var pathname = window.location.pathname;
-
-        console.log("Pathname: ", pathname);
-
-        var questions = this.props.questions;
-
-        console.log("Questions: ", questions);
-
-        var user = this.props.user;
+        var user = this.props.authenticatedUser.authenticatedUser;
 
         console.log("User: ", user);
 
@@ -62,4 +55,10 @@ class QuestionHandler extends Component {
     }
 }
 
-export default QuestionHandler;
+function mapStateToProps({authenticatedUser}){
+  return {
+    authenticatedUser
+  }
+}
+
+export default connect(mapStateToProps)(QuestionHandler);

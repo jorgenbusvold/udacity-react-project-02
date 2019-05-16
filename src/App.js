@@ -140,17 +140,6 @@ class App extends Component {
   }
 
 
-  onUserLoggedIn = (user) => {
-    console.log("ENTER: onUserLoggedIn")
-    console.info(user);
-
-    this.setState((currentState) => ({
-      //users : currentState.users[user.id], 
-      loggedInUser : currentState.users[user.id], 
-      isUserLoggedIn : true
-    })); 
-  }
-
   onUserLoggedOut = () => {
     this.setState((currentState) => ({
       isUserLoggedIn:false
@@ -183,17 +172,15 @@ class App extends Component {
 
   render() {
     
-    let {isUserAuthenticated} = this.props;
+    let {authenticatedUser} = this.props;
 
     return (
       <div className="app">
-        { (isUserAuthenticated) ? (
+        { (authenticatedUser !== null 
+            && authenticatedUser.authenticatedUser !== null) ? (
             <div>
 
-              <NavigationHeader 
-                user = {this.state.loggedInUser}
-                onUserLoggedOut = {this.onUserLoggedOut}
-              />
+              <NavigationHeader />
 
               <Route
                 exact path="/add" 
@@ -269,7 +256,7 @@ class App extends Component {
 
 function mapStateToProps({authenticatedUser}){
   return {
-    isUserAuthenticated : authenticatedUser === null ? false : true
+    authenticatedUser 
   }
 }
 

@@ -9,7 +9,10 @@ export function authenticatedUser(state = null, action){
                 authenticatedUser : action.user
             }        
         case LOG_OUT_USER:
-            return null
+            return {
+                ...state,
+                authenticatedUser : null,
+            }
         default:
             return state;
     }

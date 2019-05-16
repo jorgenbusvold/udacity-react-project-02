@@ -20,7 +20,7 @@ class UnansweredPoll extends Component {
     render(){
 
         console.log('Enter Unanswered POLL');
-        var user = this.props.user;
+        var user = this.props.authenticatedUser.authenticatedUser;
 
         var question = this.props.question;
 
@@ -55,11 +55,13 @@ class UnansweredPoll extends Component {
     }
 }
 
-function mapStateToProps({loggedInUser, users, questions}, {id}){
+function mapStateToProps({authenticatedUser, users, questions}, {id}){
     const question = questions[id];
 
+    console.log(question);
+    
     return{
-        loggedInUser, 
+        authenticatedUser, 
         question : formatQuestion (question.optionOne.text, question.optionTwo.text, question.author)()
     }
 }

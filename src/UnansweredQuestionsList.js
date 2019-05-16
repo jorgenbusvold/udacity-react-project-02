@@ -20,12 +20,12 @@ class UnansweredQuestionsList extends Component {
     }
 
     render() {
-
         console.log('Enter UnansweredQuestionsList');
 
         var user = this.props.authenticatedUser.authenticatedUser;
-
+          
         console.log(user)
+  
 
         var answeredQuestionsKeys = Object.keys(user.answers);
         
