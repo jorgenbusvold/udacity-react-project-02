@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import serializeForm from 'form-serialize';
+import {connect } from 'react-redux';
+import {formatQuestion} from './utils/_DATA'
 
 class UnansweredPoll extends Component {
 
@@ -53,4 +55,13 @@ class UnansweredPoll extends Component {
     }
 }
 
-export default UnansweredPoll;
+function mapStateToProps({loggedInUser, users, questions}, {id}){
+    const question = questions[id];
+
+    return{
+        loggedInUser, 
+        question : formatQuestion (question.optionOne.text, question.optionTwo.text, question.author)()
+    }
+}
+
+export default connect(mapStateToProps)(UnansweredPoll);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import {getObjectArray} from './Helpers';
+import {connect} from 'react-redux';
+import {handleLogInUser} from './redux/actions/LogInUser';
 
 class Login extends Component {
 
@@ -13,6 +15,8 @@ class Login extends Component {
 
     render() {
   
+      console.log(this.props);
+
       const {users} = this.props;
   
       var options = getObjectArray(users).map(u => (
@@ -21,25 +25,33 @@ class Login extends Component {
             value={u.id}>{u.name}
         </option>
       ));
-      
-
+                  
       return (
         <div className="Login" align="CENTER">
-          
           <header>Login</header>
 
-          <select ref="selectedOption">
-           {options}
-          </select>
-
-          <button
-              onClick={() => this.props.onUserLoggedIn(users[this.getSelectedOption()])}>
-              Login
-          </button>
-
+          {this.props.loading === true ? null :
+            <div>          
+              <select ref="selectedOption">
+              {options}
+              </select>
+              {/* <button onClick={() => this.props.onUserLoggedIn(users[this.getSelectedOption()])}> */}
+              <button onClick={() => this.props.dispatch(handleLogInUser(users[this.getSelectedOption()]))}>
+                  Login
+              </button>
+            </div>   
+          }    
         </div>
       );
     }
   }
   
-  export default Login;
+  function mapStateToProps({authenticatedUser,users}){
+    return {
+      loading : users === null,
+      users,
+      authenticatedUser 
+    }
+  }
+
+  export default connect(mapStateToProps)(Login);

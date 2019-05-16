@@ -183,11 +183,11 @@ class App extends Component {
 
   render() {
     
-
+    let {isUserAuthenticated} = this.props;
 
     return (
       <div className="app">
-        { (this.state.isUserLoggedIn) ? (
+        { (isUserAuthenticated) ? (
             <div>
 
               <NavigationHeader 
@@ -259,10 +259,7 @@ class App extends Component {
             </div>
 
           ) : (
-            <Login 
-              users = {this.state.users}
-              onUserLoggedIn={this.onUserLoggedIn}
-            />
+            <Login />
           )  
         }
       </div> 
@@ -270,4 +267,10 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+function mapStateToProps({authenticatedUser}){
+  return {
+    isUserAuthenticated : authenticatedUser === null ? false : true
+  }
+}
+
+export default connect(mapStateToProps)(App);

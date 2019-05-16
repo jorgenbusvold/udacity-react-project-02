@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {getAllItemsExceptFromKeys} from './Helpers';
 import './App.css';
+import {connect} from 'react-redux';
 
 class UnansweredQuestionsList extends Component {
 
@@ -22,7 +23,9 @@ class UnansweredQuestionsList extends Component {
 
         console.log('Enter UnansweredQuestionsList');
 
-        var user = this.props.user;
+        var user = this.props.authenticatedUser.authenticatedUser;
+
+        console.log(user)
 
         var answeredQuestionsKeys = Object.keys(user.answers);
         
@@ -73,4 +76,9 @@ class UnansweredQuestionsList extends Component {
     }
 }
 
-export default UnansweredQuestionsList;
+function mapStateToProps({authenticatedUser}){
+  return {
+    authenticatedUser
+  }
+}
+export default connect(mapStateToProps)(UnansweredQuestionsList);

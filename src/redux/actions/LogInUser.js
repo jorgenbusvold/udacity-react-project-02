@@ -1,8 +1,14 @@
 export const LOG_IN_USER = 'LOG_IN_USER';
 
-export function logInUser(userId){
+export function logInUser(user){
     return {
         type: LOG_IN_USER,
-        userId
+        user
+    }
+}
+
+export function handleLogInUser(user){
+    return (dispatch) => {
+        return dispatch(logInUser(user))
     }
 }
