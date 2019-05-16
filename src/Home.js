@@ -3,6 +3,7 @@ import './App.css';
 import {getObjectArray} from './Helpers';
 import AnsweredQuestionsList from './AnsweredQuestionsList';
 import UnansweredQuestionsList from './UnansweredQuestionsList';  
+import {connect} from 'react-redux';
 
 class Home extends Component {
 
@@ -72,4 +73,11 @@ class Home extends Component {
     }
   }
   
-  export default Home;
+  function mapStateToProps({authenticatedUser, questions}){
+    return{
+      authenticatedUser,
+      questions
+    }
+  }
+
+  export default connect(mapStateToProps)(Home);

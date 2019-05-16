@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import serializeForm from 'form-serialize';
+import {connect} from 'react-redux';
+import {handleAddQuestion} from './redux/actions/AddQuestion'
 
 class AddPoll extends Component {
 
@@ -12,12 +14,12 @@ class AddPoll extends Component {
         console.log('values: ',values);
         // TODO implement asction: SAVE_POLL
 
-        this.props.onPollCreated(values);
+        this.props.dispatch(handleAddQuestion(values));
     }
 
     render(){
         
-        var user = this.props.user;
+        var user = this.props.authenticatedUser;
 
         console.log('User: ',user);
 
@@ -63,4 +65,11 @@ class AddPoll extends Component {
     }
 }
 
-export default AddPoll;
+function mapStateToProps({authenticatedUser, questions}){
+    return {
+        authenticatedUser,
+        questions
+    }
+}
+
+export default connect(mapStateToProps)(AddPoll);

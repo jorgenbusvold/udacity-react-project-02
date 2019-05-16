@@ -25,28 +25,17 @@ class NavigationHeader extends Component {
                     <table align="CENTER">
                         <tbody>
                             <tr>
-
                                 <td className="nav">
-                                    <Link 
-                                        to="/">
-                                        Home
-                                    </Link>
+                                    <Link to="/">Home</Link>
                                 </td>
 
                                 <td className="nav">
-                                    <Link 
-                                        to="/add">
-                                        New Question
-                                    </Link>
+                                    <Link to="/add">New Question</Link>
                                 </td>
 
                                 <td className="nav">
-                                    <Link 
-                                        to="/leaderboard">
-                                        Leader Board
-                                    </Link>
+                                    <Link to="/leaderboard">Leader Board</Link>
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>

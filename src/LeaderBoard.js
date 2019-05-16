@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import LeaderBoardUser from './LeaderBoardUser';
 import {getObjectArray} from './Helpers';
+import {connect} from 'react-redux';
+
 
 class LeaderBoard extends Component {
 
@@ -38,4 +40,9 @@ class LeaderBoard extends Component {
     }
 }
 
-export default LeaderBoard;
+function mapStateToProps({users}){
+    return {
+        users
+    }
+}
+export default connect(mapStateToProps)(LeaderBoard);

@@ -55,9 +55,10 @@ class QuestionHandler extends Component {
     }
 }
 
-function mapStateToProps({authenticatedUser}){
+function mapStateToProps({authenticatedUser, questions}){
   return {
-    authenticatedUser
+    authenticatedUser,
+    questions
   }
 }
 

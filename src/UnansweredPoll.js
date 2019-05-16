@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import serializeForm from 'form-serialize';
 import {connect } from 'react-redux';
-import {formatQuestion} from './utils/_DATA'
 
 class UnansweredPoll extends Component {
 
@@ -55,14 +54,17 @@ class UnansweredPoll extends Component {
     }
 }
 
-function mapStateToProps({authenticatedUser, users, questions}, {id}){
+function mapStateToProps({authenticatedUser, questions}, {id}){
     const question = questions[id];
 
+    console.log('question Id');
+    console.log(id);
+    console.log('question');
     console.log(question);
     
     return{
         authenticatedUser, 
-        question : formatQuestion (question.optionOne.text, question.optionTwo.text, question.author)()
+        question
     }
 }
 
