@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import CompletedOption from './CompletedOption'
+import {connect} from 'react-redux';
 
 class CompletedPoll extends Component {
 
@@ -12,7 +13,7 @@ class CompletedPoll extends Component {
     render(){
         console.log('Enter Completed POLL');
 
-        var user = this.props.user;
+        var user = this.props.authenticatedUser;
         
         console.log('User: ',user);
 
@@ -49,4 +50,10 @@ class CompletedPoll extends Component {
     }
 }
 
-export default CompletedPoll;
+function mapStateToProps({authenticatedUser}){
+    return{
+        authenticatedUser
+    }
+}
+
+export default connect(mapStateToProps)(CompletedPoll);
