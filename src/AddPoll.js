@@ -39,8 +39,6 @@ class AddPoll extends Component {
                             onSubmit={this.handleSubmit} 
                             className="add-new-poll">
 
-                            <input type="hidden" name="user" value={user} />
-
                             <input type="text" name="optionOne" placeholder="option one"/>
                             
                             <br />

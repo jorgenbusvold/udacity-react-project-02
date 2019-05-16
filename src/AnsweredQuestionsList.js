@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getAllItemsWhereKeysExist} from './Helpers';
+import {getAllItemsWhereKeysExist,getObjectArray} from './Helpers';
 import './App.css';
 import {connect} from 'react-redux';
 
@@ -25,9 +25,11 @@ class AnsweredQuestionsList extends Component {
 
         var user = this.props.authenticatedUser.authenticatedUser;
 
+        var questions = this.props.questions;
+
         var answeredQuestionsKeys = Object.keys(user.answers);
 
-        var completedQuestions = getAllItemsWhereKeysExist(this.props.allQuestionItems,answeredQuestionsKeys)
+        var completedQuestions = getAllItemsWhereKeysExist(getObjectArray(questions),answeredQuestionsKeys)
 
         var completedListItems = completedQuestions.map(item => (
             <tr key={item.id}>
@@ -73,9 +75,10 @@ class AnsweredQuestionsList extends Component {
     }
 }
 
-function mapStateToProps({authenticatedUser}){
+function mapStateToProps({authenticatedUser, questions}){
     return {
-        authenticatedUser
+        authenticatedUser,
+        questions
     }
 }
 

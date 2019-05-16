@@ -3,13 +3,15 @@ import {_saveQuestion} from '../../utils/_DATA';
 export const ADD_QUESTION = 'ADD_QUESTION';
 
 export function addQuestion(question){
+    console.log('addQuestion')
+    console.log(question)
     return {
         type: ADD_QUESTION,
         question
     }
 }
 
-export function handleAddQuestion(optionOne, optionTwo){
+export function handleAddQuestion(values){
     return(dispatch, getState) => {
         const {authenticatedUser} = getState();
 
@@ -18,8 +20,8 @@ export function handleAddQuestion(optionOne, optionTwo){
         dispatch(showLoading())
 
         return _saveQuestion({
-            optionOneText :optionOne, 
-            optionTwoText : optionTwo, 
+            optionOneText :values.optionOne, 
+            optionTwoText : values.optionTwo, 
             author : authenticatedUser.authenticatedUser.id
             })
             .then((q) => addQuestion(q))
