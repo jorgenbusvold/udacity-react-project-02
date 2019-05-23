@@ -9,7 +9,7 @@ class LeaderBoardUser extends Component {
         
         console.log('Enter LeaderBoardUser');
 
-        var user = this.props.authenticatedUser.authenticatedUser;
+        const user = this.props.user;
         
         console.log('User: ', user);
 

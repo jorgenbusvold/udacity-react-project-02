@@ -17,7 +17,7 @@ class CompletedPoll extends Component {
         
         console.log('User: ',user);
 
-        var question = this.props.question;
+        var question = this.props.questions[this.props.questionId];
 
         var totalNumberOfVotes = question.optionOne.votes.length + question.optionTwo.votes.length;
         
@@ -50,9 +50,10 @@ class CompletedPoll extends Component {
     }
 }
 
-function mapStateToProps({authenticatedUser}){
+function mapStateToProps({authenticatedUser, questions}, ownProps){
     return{
-        authenticatedUser
+        authenticatedUser,
+        questions,
     }
 }
 

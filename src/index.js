@@ -3,14 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createStore } from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
 import {Provider as ReduxProvider} from 'react-redux';
 import reducer from './redux/reducers';
 import middleware from './middelware'
+import logger from './middelware/logger'
+import thunk from 'redux-thunk'
+
+const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    shouldHotReload: false,
+    name: `react-redux-course - ${window.location.hostname}`
+})
+: compose;
+
+const enhancers = [applyMiddleware(logger, thunk)];
 
 const store = createStore(
     reducer
-    ,middleware
+    ,composeEnhancers(...enhancers)
     );
 
 console.log(store.getState())

@@ -21,11 +21,8 @@ class App extends Component {
   onPollCreated = (user, poll) => {
     console.log('New poll created by user: ', user)
     console.log('New poll created: ', poll)
-
-    // this.setState((currentState) => ({
-    //     questions: currentState.questions.concat(poll)
-    //   }));
   }
+
 
   onAnswerSubmitted = (user, question) => {
     console.log("Answer submitted by user: ", user);
@@ -48,7 +45,7 @@ class App extends Component {
     return (
       <div className="app">
         { (authenticatedUser !== null 
-            && authenticatedUser.authenticatedUser !== null) ? 
+            && authenticatedUser !== null) ? 
             (
             <div>
               <Router>

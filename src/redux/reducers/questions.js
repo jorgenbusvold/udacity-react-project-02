@@ -12,9 +12,9 @@ export function questions(state = {}, action){
                 ...action.questions
             }
         case ADD_QUESTION:
-            return{
+            return {
                 ...state,
-                ...state.questions.concat(action.question),
+                [action.question.id]: action.question
             }
         default:
             return state;

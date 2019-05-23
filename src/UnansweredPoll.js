@@ -19,7 +19,7 @@ class UnansweredPoll extends Component {
     render(){
         
         console.log('Enter Unanswered POLL');
-        var user = this.props.authenticatedUser.authenticatedUser;
+        var user = this.props.authenticatedUser;
 
         var question = this.props.question;
 

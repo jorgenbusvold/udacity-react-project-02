@@ -22,7 +22,7 @@ class UnansweredQuestionsList extends Component {
     render() {
         console.log('Enter UnansweredQuestionsList');
 
-        var user = this.props.authenticatedUser.authenticatedUser;
+        var user = this.props.authenticatedUser;
         
         console.log(user)
 

@@ -23,7 +23,7 @@ class AnsweredQuestionsList extends Component {
         
         console.log('Enter AnsweredQuestionsList');
 
-        var user = this.props.authenticatedUser.authenticatedUser;
+        var user = this.props.authenticatedUser;
 
         var questions = this.props.questions;
 

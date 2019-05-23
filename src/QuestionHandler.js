@@ -24,7 +24,7 @@ class QuestionHandler extends Component {
 
     render() {
         
-        var user = this.props.authenticatedUser.authenticatedUser;
+        var user = this.props.authenticatedUser;
 
         console.log("User: ", user);
 
@@ -40,7 +40,7 @@ class QuestionHandler extends Component {
         return (
             (this.isQuestionCompletedByUser(user, question))
             ?
-              (<CompletedPoll />)
+              (<CompletedPoll  questionId = {question.question_id}/>)
             : 
               (<UnansweredPoll onAnswerSubmitted = {this.props.onAnswerSubmitted}/>
             )

@@ -10,7 +10,7 @@ class NavigationHeader extends Component {
 
     render(){
 
-        var {authenticatedUser} = this.props.authenticatedUser;
+        const authenticatedUser = this.props.authenticatedUser;
 
         return (
             

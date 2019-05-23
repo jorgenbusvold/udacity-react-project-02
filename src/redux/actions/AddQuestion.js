@@ -23,9 +23,9 @@ export function handleAddQuestion(values){
             {
                 optionOneText :values.optionOne, 
                 optionTwoText : values.optionTwo, 
-                author : authenticatedUser.authenticatedUser.id
+                author : authenticatedUser.id
             })
-            .then((q) => addQuestion(q))
+            .then((q) => dispatch(addQuestion(q)))
             .then(dispatch(hideLoading()))
             // .then(window.history.push('/'))
     }
