@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {getObjectArray} from './Helpers';
+import {connect} from 'react-redux';
 
 class LeaderBoardUser extends Component {
 
@@ -8,13 +9,16 @@ class LeaderBoardUser extends Component {
         
         console.log('Enter LeaderBoardUser');
 
-        var user = this.props.user;
+        var user = this.props.authenticatedUser.authenticatedUser;
         
         console.log('User: ', user);
 
         var numberOfAnswers = getObjectArray(user.answers).length;
 
         var numberOfQuestions = user.questions.length;
+
+        console.log('user questions: ')
+        console.log(user.questions);
 
         var totalNumberOfPoints = numberOfAnswers + numberOfQuestions;
 
@@ -45,4 +49,11 @@ class LeaderBoardUser extends Component {
     }
 }
 
-export default LeaderBoardUser;
+function mapStateToProps({authenticatedUser, questions}){
+    return {
+        authenticatedUser,
+        questions
+    }
+}
+
+export default connect(mapStateToProps)(LeaderBoardUser);

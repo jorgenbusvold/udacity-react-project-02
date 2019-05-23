@@ -12,9 +12,11 @@ class AddPoll extends Component {
         const values = serializeForm(e.target, {hash:true});
 
         console.log('values: ',values);
-        // TODO implement asction: SAVE_POLL
 
         this.props.dispatch(handleAddQuestion(values));
+
+        this.props.history.push('/')
+        // console.log('Questions after added: ',this.props.questions);
     }
 
     render(){

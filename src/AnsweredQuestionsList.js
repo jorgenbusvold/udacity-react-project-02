@@ -29,33 +29,9 @@ class AnsweredQuestionsList extends Component {
 
         var answeredQuestionsKeys = Object.keys(user.answers);
 
-        var completedQuestions = getAllItemsWhereKeysExist(getObjectArray(questions),answeredQuestionsKeys)
+        var questionArray = getObjectArray(questions);
 
-        var completedListItems = completedQuestions.map(item => (
-            <tr key={item.id}>
-                <td>
-                    <div align="left" colSpan="3" bgcolor="gainsboro">
-                        {item.author} asks:
-                    </div>
-                    <div>
-                        AVATAR_IMG
-                    </div>
-                </td>
-                
-
-                <td align="left">
-                    <b>Would you rather </b>
-                    <br/>
-                    ...{item.optionOne.text}
-                    <br />
-                    <button onClick={() => 
-                        this.showResult(user,item)}>
-                        View result
-                    </button>
-                </td>  
-             </tr>
-          ));
-
+        var completedQuestions = getAllItemsWhereKeysExist(questionArray,answeredQuestionsKeys)
 
         return (
         
@@ -67,7 +43,31 @@ class AnsweredQuestionsList extends Component {
                             </tr> 
                         </thead>
                         <tbody>
-                            {completedListItems}
+                            {completedQuestions.map(item => (
+                                <tr key={item.id}>
+                                
+                                    <td>
+                                        <div align="left" colSpan="3" bgcolor="gainsboro">
+                                            {item.author} asks:
+                                        </div>
+                                        <div>
+                                            AVATAR_IMG
+                                        </div>
+                                    </td>
+                                    
+
+                                    <td align="left">
+                                        <b>Would you rather </b>
+                                        <br/>
+                                        ...{item.optionOne.text}
+                                        <br />
+                                        <button onClick={() => 
+                                            this.showResult(user,item)}>
+                                            View result
+                                        </button>
+                                    </td>  
+
+                            </tr>))}
                         </tbody>
                     </table>
                 </div>            

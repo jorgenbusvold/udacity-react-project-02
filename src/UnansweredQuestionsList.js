@@ -23,13 +23,18 @@ class UnansweredQuestionsList extends Component {
         console.log('Enter UnansweredQuestionsList');
 
         var user = this.props.authenticatedUser.authenticatedUser;
-          
+        
         console.log(user)
+
+        var questions = this.props.questions;
+
+        console.log('questions')
+        console.log(questions);
   
 
         var answeredQuestionsKeys = Object.keys(user.answers);
         
-        var uncompletedQuetions = getAllItemsExceptFromKeys(this.props.allQuestionItems,answeredQuestionsKeys);
+        var uncompletedQuetions = getAllItemsExceptFromKeys(questions,answeredQuestionsKeys);
         
         var availableItems = uncompletedQuetions.map(item => (
             <tr key={item.id} className="incomplete-question-item">
@@ -76,9 +81,10 @@ class UnansweredQuestionsList extends Component {
     }
 }
 
-function mapStateToProps({authenticatedUser}){
+function mapStateToProps({authenticatedUser, questions}){
   return {
-    authenticatedUser
+    authenticatedUser,
+    questions
   }
 }
 export default connect(mapStateToProps)(UnansweredQuestionsList);

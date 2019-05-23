@@ -2,7 +2,7 @@ import { showLoading, hideLoading } from "react-redux-loading";
 import {_saveQuestion} from '../../utils/_DATA';
 export const ADD_QUESTION = 'ADD_QUESTION';
 
-export function addQuestion(question){
+function addQuestion(question){
     console.log('addQuestion')
     console.log(question)
     return {
@@ -19,12 +19,14 @@ export function handleAddQuestion(values){
 
         dispatch(showLoading())
 
-        return _saveQuestion({
-            optionOneText :values.optionOne, 
-            optionTwoText : values.optionTwo, 
-            author : authenticatedUser.authenticatedUser.id
+        return _saveQuestion(
+            {
+                optionOneText :values.optionOne, 
+                optionTwoText : values.optionTwo, 
+                author : authenticatedUser.authenticatedUser.id
             })
             .then((q) => addQuestion(q))
             .then(dispatch(hideLoading()))
+            // .then(window.history.push('/'))
     }
 }

@@ -59,8 +59,9 @@ class App extends Component {
                     exact path="/add" 
                     render={
                       ({history}) => (
-                      <AddPoll
-                        onPollCreated = {(poll) => {
+                      <AddPoll 
+                          history = {history}
+                          onPollCreated = {(poll) => {
                           this.onPollCreated(poll);
                           history.push('/')
                           }

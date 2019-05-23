@@ -40,25 +40,17 @@ class QuestionHandler extends Component {
         return (
             (this.isQuestionCompletedByUser(user, question))
             ?
-            (<CompletedPoll 
-                user = {user}
-                question = {this.props.questions[question.question_id]}
-                />)
+              (<CompletedPoll />)
             : 
-            (<UnansweredPoll 
-                user = {user}
-                question = {this.props.questions[question.question_id]}
-                onAnswerSubmitted = {this.props.onAnswerSubmitted}
-                />
+              (<UnansweredPoll onAnswerSubmitted = {this.props.onAnswerSubmitted}/>
             )
         );
     }
 }
 
-function mapStateToProps({authenticatedUser, questions}){
+function mapStateToProps({authenticatedUser}){
   return {
     authenticatedUser,
-    questions
   }
 }
 

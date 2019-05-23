@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import {getObjectArray} from './Helpers';
 import AnsweredQuestionsList from './AnsweredQuestionsList';
 import UnansweredQuestionsList from './UnansweredQuestionsList';  
-import {connect} from 'react-redux';
 
 class Home extends Component {
 
@@ -24,12 +22,6 @@ class Home extends Component {
   }
 
     render() {
-
-      var user = this.props.user;
-
-      var questions = this.props.questions;
-
-      var allQuestionItems = getObjectArray(questions);
 
       var history = this.props.history;
 
@@ -53,19 +45,14 @@ class Home extends Component {
             {this.state.viewUnAnsweredItems? 
             (
               <UnansweredQuestionsList 
-                user={user}
-                allQuestionItems = {allQuestionItems}
                 history = {history}
               />
             ):
             (
               <AnsweredQuestionsList 
-                user={user}
-                allQuestionItems = {allQuestionItems}
                 history = {history}
               />
             )}
-
 
           </div>
         </div>
@@ -73,11 +60,4 @@ class Home extends Component {
     }
   }
   
-  function mapStateToProps({authenticatedUser, questions}){
-    return{
-      authenticatedUser,
-      questions
-    }
-  }
-
-  export default connect(mapStateToProps)(Home);
+  export default Home;
