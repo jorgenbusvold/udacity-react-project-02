@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import serializeForm from 'form-serialize';
 import {connect } from 'react-redux';
+import {handleAddQuestionVote} from './redux/actions/AddQuestionVote'
 
 class UnansweredPoll extends Component {
 
@@ -10,16 +11,31 @@ class UnansweredPoll extends Component {
 
         const values = serializeForm(e.target, {hash:true});
 
-        console.log('values: ',values);
-        // TODO implement asction: SAVE_ANSWER_RESULT
+        const isFirstOptionChecked = e.target[0].checked;
 
-        // this.props.onAnswerSubmitted(user, question);
+        const isSecondOptionChecked = e.target[1].checked;
+        
+
+        if(isFirstOptionChecked && isSecondOptionChecked){
+            console.warn('Illegal combination. Only one option can be checked')
+        }
+
+        console.log('values: ',values);
+
+        const authenticatedUser = this.props.authenticatedUser;
+
+        const question = this.props.question;
+
+        const option = isFirstOptionChecked ? 'optionOne' : 'optionTwo';
+
+        this.props.dispatch(handleAddQuestionVote({authenticatedUser, question, option}));
+
+        //this.props.history.push('/')
     }
     
     render(){
         
         console.log('Enter Unanswered POLL');
-        var user = this.props.authenticatedUser;
 
         var question = this.props.question;
 
@@ -33,7 +49,7 @@ class UnansweredPoll extends Component {
                     <b>Would you rather</b>
                     <br />
                     <form
-                        // onSubmit={this.handleSubmit} 
+                        onSubmit={this.handleSubmit} 
                         >
                         <input type="radio" value={question.optionOne.text} />{question.optionOne.text}
                         <br />
@@ -41,10 +57,9 @@ class UnansweredPoll extends Component {
                         <br />
                         <input type="radio" value={question.optionTwo.text} />{question.optionTwo.text}
                         <br />
-                        {/* <input type="submit" value="Submit"/> */}
                         <button 
-                            onClick={() => 
-                            this.props.onAnswerSubmitted(user, question)}>
+
+                            >
                             Submit answer
                         </button>
                     </form>
@@ -54,17 +69,13 @@ class UnansweredPoll extends Component {
     }
 }
 
-function mapStateToProps({authenticatedUser, questions}, {id}){
-    
-    var questionId = window.location.href.replace(/\/$/, ''); 
-
-    var lastSeg = questionId.substr(questionId.lastIndexOf('/') + 1);
-
-    const question = questions[lastSeg];
+function mapStateToProps({authenticatedUser, questions}, ownProps){
+    const question = questions[ownProps.questionId];
 
     return{
         authenticatedUser, 
-        question
+        question,
+
     }
 }
 

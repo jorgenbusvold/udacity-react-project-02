@@ -27,6 +27,5 @@ export function handleAddQuestion(values){
             })
             .then((q) => dispatch(addQuestion(q)))
             .then(dispatch(hideLoading()))
-            // .then(window.history.push('/'))
     }
 }

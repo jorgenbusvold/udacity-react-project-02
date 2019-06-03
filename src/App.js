@@ -80,11 +80,11 @@ class App extends Component {
                       ({history}) => 
                         <QuestionHandler
                           history = {history}
-                          onAnswerSubmitted = {(user,question) => {
-                              this.onAnswerSubmitted(user,question)
-                              history.push('/');
-                              }
-                          }
+                          // onAnswerSubmitted = {(user,question) => {
+                          //     this.onAnswerSubmitted(user,question)
+                          //     history.push('/');
+                          //     }
+                          // }
                         />
                       }
                   /> 

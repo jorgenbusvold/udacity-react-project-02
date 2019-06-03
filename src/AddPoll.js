@@ -16,7 +16,6 @@ class AddPoll extends Component {
         this.props.dispatch(handleAddQuestion(values));
 
         this.props.history.push('/')
-        // console.log('Questions after added: ',this.props.questions);
     }
 
     render(){

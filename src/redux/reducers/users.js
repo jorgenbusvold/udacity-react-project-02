@@ -11,7 +11,6 @@ export function users(state = {}, action){
         case ADD_QUESTION:
             return {
                 ...state,
-                //[action.question.id]: action.question,
                 [action.question.author]: {
                     ...state[action.question.author],
                     questions: state[action.question.author].questions.concat(action.question.id)
