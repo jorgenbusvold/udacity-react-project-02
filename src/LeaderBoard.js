@@ -25,7 +25,9 @@ class LeaderBoard extends Component {
                         {/* 
                         * Users are ordered in descending order based on the sum of the number of questions they’ve answered and the number of questions they’ve asked. 
                         */}
-                        {getObjectArray(users).map((u) => (
+                        {getObjectArray(users)
+                                //.sort((a,b) => users[b].timestamp - users[a].timestamp)
+                                .map((u) => (
                                 <LeaderBoardUser 
                                     key={u.id}
                                     user = {u}

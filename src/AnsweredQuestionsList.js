@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getAllItemsWhereKeysExist,getObjectArray} from './Helpers';
+import {getAllItemsWhereKeysExist,getObjectArray, getAllItemsWhereKeyValuesExist} from './Helpers';
 import './App.css';
 import {connect} from 'react-redux';
 
@@ -28,10 +28,16 @@ class AnsweredQuestionsList extends Component {
         var questions = this.props.questions;
 
         var answeredQuestionsKeys = Object.keys(user.answers);
+           
+        let sortedQuestionIds = Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp);
 
-        var questionArray = getObjectArray(questions);
+        let sortedQuestions = getAllItemsWhereKeyValuesExist(questions,sortedQuestionIds);
 
-        var completedQuestions = getAllItemsWhereKeysExist(questionArray,answeredQuestionsKeys)
+        let completedQuestions = sortedQuestions.map((question) => {
+            if(answeredQuestionsKeys.includes(question.id)){
+                return question;
+            };
+        }).filter(function(e){return e});
 
         return (
         

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getAllItemsExceptFromKeys} from './Helpers';
+import {getAllItemsExceptFromKeys,getAllItemsWhereKeyValuesExist} from './Helpers';
 import './App.css';
 import {connect} from 'react-redux';
 
@@ -34,9 +34,17 @@ class UnansweredQuestionsList extends Component {
 
         var answeredQuestionsKeys = Object.keys(user.answers);
         
-        var uncompletedQuetions = getAllItemsExceptFromKeys(questions,answeredQuestionsKeys);
+        let sortedQuestionIds = Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp);
+
+        let sortedQuestions = getAllItemsWhereKeyValuesExist(questions,sortedQuestionIds);
         
-        var availableItems = uncompletedQuetions.map(item => (
+        let uncompletedQuetions = getAllItemsExceptFromKeys(sortedQuestions, answeredQuestionsKeys);
+
+        // var uncompletedQuetions = getAllItemsExceptFromKeys(questions,answeredQuestionsKeys);
+
+        var availableItems = uncompletedQuetions
+            .map(item => (
+              // CONSIDER TO BREAK THIS OUT INTO AN Separate ListItem-class...
             <tr key={item.id} className="incomplete-question-item">
               <td>
                 <div align="left" colSpan="3" bgcolor="gainsboro">

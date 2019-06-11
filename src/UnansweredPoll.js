@@ -29,8 +29,6 @@ class UnansweredPoll extends Component {
         const option = isFirstOptionChecked ? 'optionOne' : 'optionTwo';
 
         this.props.dispatch(handleAddQuestionVote({authenticatedUser, question, option}));
-
-        //this.props.history.push('/')
     }
     
     render(){
@@ -57,9 +55,7 @@ class UnansweredPoll extends Component {
                         <br />
                         <input type="radio" value={question.optionTwo.text} />{question.optionTwo.text}
                         <br />
-                        <button 
-
-                            >
+                        <button>
                             Submit answer
                         </button>
                     </form>

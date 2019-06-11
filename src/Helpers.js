@@ -27,7 +27,7 @@ export function getAllItemsExceptFromKeys(allItems, excludeKeys) {
       }
     }
 
-    return items;  
+    return items; 
   }
 
   export function getAllItemsWhereKeysExist(allItems,existingKeys){
@@ -46,4 +46,19 @@ export function getAllItemsExceptFromKeys(allItems, excludeKeys) {
     return items;  
   }
 
+  export function getAllItemsWhereKeyValuesExist(allItems,existingKeys){
+
+    console.log('ENTER getAllItemsWhereKeysExist: ',allItems)
+    console.log('existingKeys: ',existingKeys)
+
+    var items = []; 
+
+    for(var key in existingKeys)
+    {
+      var item = allItems[existingKeys[key]];
+      items.push(item);
+    }
+
+    return items;  
+  }
     

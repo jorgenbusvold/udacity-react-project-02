@@ -1,7 +1,6 @@
 import {LIST_QUESTIONS} from '../actions/ListQuestions';
 import { ADD_QUESTION } from '../actions/AddQuestion';
 import {ADD_QUESTION_VOTE} from '../actions/AddQuestionVote';
-import QuestionHandler from '../../QuestionHandler';
 
 export function questions(state = {}, action){
     console.log('Question-Reducer.Action')
