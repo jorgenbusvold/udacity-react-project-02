@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import LeaderBoardUser from './LeaderBoardUser';
-import {getObjectArray} from './Helpers';
+import {getObjectArray, getAllItemsWhereKeyValuesExist} from './Helpers';
 import {connect} from 'react-redux';
 
 
@@ -17,6 +17,10 @@ class LeaderBoard extends Component {
         
         console.log('Users: ', users);
 
+        let sortedUsersIds = Object.keys(users).sort((a,b) => (getObjectArray(users[b].answers).length + users[b].questions.length) - (getObjectArray(users[a].answers).length + users[a].questions.length)) 
+        
+        let sortedUsers = getAllItemsWhereKeyValuesExist(users,sortedUsersIds);
+
         return (
             <div className="Container">            
                 <div className="LeaderBoard" align="CENTER">
@@ -24,9 +28,9 @@ class LeaderBoard extends Component {
                     <div className="leader-board-users">
                         {/* 
                         * Users are ordered in descending order based on the sum of the number of questions they’ve answered and the number of questions they’ve asked. 
-                        */}
-                        {getObjectArray(users)
-                                //.sort((a,b) => users[b].timestamp - users[a].timestamp)
+                        */
+                        }
+                        {getObjectArray(sortedUsers)
                                 .map((u) => (
                                 <LeaderBoardUser 
                                     key={u.id}
