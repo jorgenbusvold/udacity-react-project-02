@@ -40,8 +40,6 @@ class UnansweredQuestionsList extends Component {
         
         let uncompletedQuetions = getAllItemsExceptFromKeys(sortedQuestions, answeredQuestionsKeys);
 
-        // var uncompletedQuetions = getAllItemsExceptFromKeys(questions,answeredQuestionsKeys);
-
         var availableItems = uncompletedQuetions
             .map(item => (
               // CONSIDER TO BREAK THIS OUT INTO AN Separate ListItem-class...

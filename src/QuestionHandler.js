@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UnansweredPoll from './UnansweredPoll';
 import CompletedPoll from './CompletedPoll';
+import NotFound from './NotFound';
 import {matchPath} from 'react-router-dom';
 import {connect}  from 'react-redux';
 
@@ -20,6 +21,12 @@ class QuestionHandler extends Component {
 
         return returnValue;
       }
+    
+    isValidQuestionId = (questions,questionId) => {
+      let keys = Object.keys(questions);
+      let id =questionId.question_id;
+      return keys.includes(id);
+    }
 
 
     render() {
@@ -38,19 +45,25 @@ class QuestionHandler extends Component {
         var question = getQuestionFromPath(window.location.pathname);
 
         return (
-            (this.isQuestionCompletedByUser(user, question))
+            (this.isValidQuestionId(this.props.questions, question))
             ?
-              (<CompletedPoll  questionId = {question.question_id}/>)
-            : 
-              (<UnansweredPoll questionId = {question.question_id}/>
-            )
+            (
+              (this.isQuestionCompletedByUser(user, question))
+              ?
+                (<CompletedPoll  questionId = {question.question_id}/>)
+              : 
+                (<UnansweredPoll questionId = {question.question_id}/>
+              )
+            ):
+            ( <NotFound />)
         );
     }
 }
 
-function mapStateToProps({authenticatedUser}){
+function mapStateToProps({authenticatedUser, questions}){
   return {
     authenticatedUser,
+    questions
   }
 }
 
