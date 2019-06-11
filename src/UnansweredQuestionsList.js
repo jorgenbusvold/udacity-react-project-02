@@ -48,8 +48,6 @@ class UnansweredQuestionsList extends Component {
                 <div align="left" colSpan="3" bgcolor="gainsboro">
                   {item.author} asks:
                 </div>
-
-                <div>AVATAR_IMG</div>
               </td>
               <td>
                 <div>

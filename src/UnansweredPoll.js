@@ -35,15 +35,21 @@ class UnansweredPoll extends Component {
         
         console.log('Enter Unanswered POLL');
 
-        var question = this.props.question;
+        let {question, users} = this.props;
 
         console.log(question);
 
         return (
             <div className="Container">            
                 <div className="UnansweredQuestion" align="CENTER">
-                    <b>Author: </b>{question.author}
-                        <h1>Unanswered questions</h1>
+                    
+                    <h3>Unanswered questions</h3>
+                    <b>{question.author}</b> asks...
+                    <br />   
+                    <br />   
+                    <div>
+                        <img src={users[question.author].avatarURL} alt={question.author}  height='120' width='120'/>
+                    </div>
                     <b>Would you rather</b>
                     <br />
                     <form
@@ -65,13 +71,13 @@ class UnansweredPoll extends Component {
     }
 }
 
-function mapStateToProps({authenticatedUser, questions}, ownProps){
+function mapStateToProps({authenticatedUser, questions, users}, ownProps){
     const question = questions[ownProps.questionId];
 
     return{
         authenticatedUser, 
         question,
-
+        users
     }
 }
 

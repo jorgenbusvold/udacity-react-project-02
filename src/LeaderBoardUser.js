@@ -9,7 +9,7 @@ class LeaderBoardUser extends Component {
         
         console.log('Enter LeaderBoardUser');
 
-        const user = this.props.user;
+        const {user} = this.props;
         
         console.log('User: ', user);
 
@@ -25,6 +25,9 @@ class LeaderBoardUser extends Component {
         return (
             <div className="Container">            
                 <div className="LeaderBoardUser" align="CENTER">
+                    <div>
+                        <img src={user.avatarURL} alt={user.name}  height='120' width='120' />
+                    </div>
                     <b>{user.name}</b> has <b>{totalNumberOfPoints}</b> points.
                     {/* 
                     * Each entry on the leaderboard contains the following:
@@ -52,7 +55,7 @@ class LeaderBoardUser extends Component {
 function mapStateToProps({authenticatedUser, questions}){
     return {
         authenticatedUser,
-        questions
+        questions,
     }
 }
 
